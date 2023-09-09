@@ -1,0 +1,59 @@
+.content {
+    padding: 0;
+    height: inherit;
+}
+
+.header {
+    position: unset;
+}
+
+.product__img img{
+    max-width: 100px;
+    max-height: 100px;
+    vertical-align: top;
+}
+
+.content__product {
+    display: flex;
+    align-items: center;
+    background-color: #3c3c3c;
+    padding: 0.5em;
+    margin-top: 10px;
+    border-radius: 0.5rem;
+}
+
+.product__del svg, .product_edit svg{
+    width: 30px;
+}
+
+.product__del, .product_edit {
+    flex: 1;
+}
+
+.product__img {
+    flex: 3;
+}
+
+.product__params {
+    align-self: normal;
+    flex: 10;
+}
+
+.params__list {
+    margin-top: 8px;
+}
+
+.content__new-product {
+    min-height: 116px;
+    justify-content: center;
+    border: #dbdbdb dashed;
+    cursor: pointer;
+}
+
+.content__new-product svg {
+    max-height: 20px;
+}
+
+.content__new-product p {
+    margin: 0 8px 0 0;
+}

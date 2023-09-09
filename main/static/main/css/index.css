@@ -1,0 +1,19 @@
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 25px 0 0 0;
+}
+
+.list-element {
+    width: 192px;
+    background-color: rgb(39 39 39);
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 30px;
+    text-align: center;
+}
+
+dialog form{
+    padding: 1rem;
+}
