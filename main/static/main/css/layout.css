@@ -122,11 +122,13 @@ h2 {
 .colorful-svg svg *{
     fill: #88bb33;
     transition: 0.6s;
-    cursor: pointer
+    cursor: pointer;
+    stroke: #88bb33;
 }
 
 .colorful-svg:hover svg *{
     fill: #33bba4;
+    stroke: #33bba4;
     transition: 0.6;
 }
 
@@ -213,38 +215,4 @@ hr {
     width: 730px;
     margin: 0 auto;
     padding: 108px 0 0 0;
-}
-
-dialog {
-    background-color: #303030;
-    padding: 0;
-}
-
-.dialog__buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-.dialog__row {
-    padding-bottom: 10px;
-}
-.dialog__questions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #fff;
-    text-decoration: underline;
-}
-
-.dialog__questions * {
-    cursor: pointer;
-    margin: 0;
-}
-
-.dialog__logo {
-    color: #fff;
-    justify-content: center;
-    margin-bottom: 10px;
-    cursor: default !important;
 }

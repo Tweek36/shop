@@ -4,23 +4,65 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Product',
+            name="Product",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(error_messages={'unique': 'A product with that name already exists.'}, help_text='Required. 128 characters or fewer.', max_length=127, unique=True, verbose_name='name')),
-                ('type', models.CharField(choices=[('cpu', 'CPU')], max_length=127, verbose_name='type')),
-                ('propertys', models.JSONField(verbose_name='propertys')),
-                ('img', models.ImageField(default='img/default.jpg', upload_to='img', verbose_name='img')),
-                ('coment', models.TextField(blank=True, help_text='Required. 511 characters or fewer.', max_length=511, verbose_name='coment')),
-                ('amount', models.PositiveSmallIntegerField(default=0, help_text='Required. Positive number.', verbose_name='amount')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        error_messages={
+                            "unique": "A product with that name already exists."
+                        },
+                        help_text="Required. 128 characters or fewer.",
+                        max_length=127,
+                        unique=True,
+                        verbose_name="name",
+                    ),
+                ),
+                (
+                    "type",
+                    models.CharField(
+                        choices=[("cpu", "CPU")], max_length=127, verbose_name="type"
+                    ),
+                ),
+                ("propertys", models.JSONField(verbose_name="propertys")),
+                (
+                    "img",
+                    models.ImageField(
+                        default="img/default.jpg", upload_to="img", verbose_name="img"
+                    ),
+                ),
+                (
+                    "coment",
+                    models.TextField(
+                        blank=True,
+                        help_text="Required. 511 characters or fewer.",
+                        max_length=511,
+                        verbose_name="coment",
+                    ),
+                ),
+                (
+                    "amount",
+                    models.PositiveSmallIntegerField(
+                        default=0,
+                        help_text="Required. Positive number.",
+                        verbose_name="amount",
+                    ),
+                ),
             ],
         ),
     ]

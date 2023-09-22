@@ -1,0 +1,102 @@
+.modal-field {
+    margin-bottom: 1rem;
+}
+
+.modal-field__lable {
+    display: block;
+    margin-bottom: 0.25rem;
+    height: 38px;
+    width: 38px;
+    margin: 0 8px 0 0;
+    align-self: center;
+}
+
+.modal-field__lable svg path{
+    fill: #88bb33;
+    transition: 0.6s;
+}
+
+.modal-field {
+    display: flex;
+    flex-flow: row-reverse;
+}
+
+.modal input {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.modal input:focus + .modal-field__lable svg path{
+    fill: #33bba4;
+    transition: 0.6s;
+}
+
+.modal {
+    z-index: 20000;
+    box-shadow: 0 3px 10px -0.5px rgb(0 0 0 / 20%);
+    border-radius: 3px;
+    background-color: #303030;
+    transition: 0.3s all;
+}
+
+.modal-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: xxx-large;
+}
+
+.modal-logo__img {
+    width: 128px;
+}
+
+.modal-close {
+    display: block;
+    position: absolute;
+    width: 16px;
+    top: 1em;
+    right: 1em;
+}
+
+.modal-close svg {
+    fill: #181818;
+    transition: 0.6s;
+}
+
+.modal-close:hover {
+    cursor: pointer;
+}
+
+.modal-close:hover svg {
+    fill: #cc0000;
+    transition: 0.6s;
+}
+
+.modal input {
+    width: -webkit-fill-available;
+}
+
+dialog {
+    background-color: #303030;
+    padding: 0;
+}
+
+dialog>form {
+    padding: 1em;
+}
+
+dialog:focus-visible {
+    outline: none;
+}
