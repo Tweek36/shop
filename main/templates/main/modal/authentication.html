@@ -1,8 +1,8 @@
 {% load static %}
 
 {% block signup %}
-<dialog class="modal" id="registration">
-    <form method="post" class="modal__form" id="register" action="{% url 'register' %}">
+<dialog class="modal" id="authentication">
+    <form method="post" class="modal__form" id="login" action="{% url 'login' %}">
         <div class="modal__close" id="close-modal">
             <svg width="16" height="16">
                 <use xlink:href="{% static 'main/img/close.svg' %}#close"></use>
@@ -11,14 +11,14 @@
         <div class="modal__top">
             <img src="{% static 'main/img/logo.png' %}" alt="" class="modal__top-logo">
         </div>
-        {% for row in registration_form %}
+        {% for row in authentication_form %}
             <div class="modal__field">
                 {{row}}
             </div>
         {% endfor %}
-        <button type="submit" class="modal__button" id="submit_registration" name="submit" value="signin">Sign up</button>
+        <button type="submit" class="modal__button" id="submit_authentication" name="submit" value="login">Login</button>
         <div class="modal__field-question">
-            <a class="modal__field-question-text" id="change_registration">Login</a>
+            <a class="modal__field-question-text" id="change_authentication">Sign up</a>
             <a class="modal__field-question-text resetpassword">Forgot password?</a>
         </div>
     </form>

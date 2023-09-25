@@ -1,3 +1,4 @@
+/* Стили для .list */
 .list {
     display: flex;
     flex-wrap: wrap;
@@ -5,7 +6,8 @@
     margin: 25px 0 0 0;
 }
 
-.list-element {
+/* Стили для .list__element */
+.list__element {
     width: 192px;
     background-color: rgb(39 39 39);
     padding: 25px;

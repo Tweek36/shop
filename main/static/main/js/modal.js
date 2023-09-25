@@ -1,64 +1,109 @@
-const btn = document.getElementById("open_login");
-const modal = document.getElementById("registration");
-const closeBtn = document.getElementById("close-modal");
-const btn_logout = document.getElementById("logout");
+$(document).ready(function() {
+  const btn_login = $("#open_login");
+  const modal_registration = $("#registration");
+  const modal_authentication = $("#authentication");
+  const closeBtn = $("#close-modal");
+  const btn_logout = $("#logout");
+  const change_registration = $("#change_registration");
+  const change_authentication = $("#change_authentication");
+  const csrftoken = $.cookie('csrftoken');
 
-// Функция для получения CSRF-токена из cookies
-function getCookie(name) {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== '') {
-    const cookies = document.cookie.split(';');
-    console.log(cookies);
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      if (cookie.startsWith(name + '=')) {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
-      }
-    }
-  }
-  return cookieValue;
-}
+  change_registration.on("click", function() {
+    modal_registration.get(0).close();
+    modal_authentication.get(0).showModal();
+  });
 
-if(btn){
-  btn.onclick = function() {
-    modal.showModal();
-  }
-} 
-if (btn_logout) {
-  btn_logout.onclick = function() {
-    // Получаем CSRF-токен из cookies
-    const csrftoken = getCookie('csrftoken');
-  
-    fetch('/logout/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': csrftoken, // Передача CSRF-токена в заголовке
-      },
-    })
-    .then(response => {
-      if (response.ok) {
-        console.log('Вы успешно вышли из системы.');
-      } else {
-        console.error('Произошла ошибка при выходе из системы.');
-      }
-    })
-    .catch(error => {
-      console.error('Произошла ошибка при выполнении запроса:', error);
+  change_authentication.on("click", function() {
+    modal_authentication.get(0).close();
+    modal_registration.get(0).showModal();
+  });
+
+  $("#login").submit(function(event) {
+    event.preventDefault();  // Предотвращаем стандартное поведение отправки формы
+    // Отправляем данные формы на сервер через AJAX
+    $.ajax({
+        type: "POST",
+        url: $(this).attr('action'),  // Замените на правильный URL
+        headers: {
+          'X-CSRFToken': csrftoken, // Передача CSRF-токена в заголовке
+        },
+        data: $(this).serialize(),
+        success: function(response) {
+            // Обработка успешного ответа от сервера (например, вывод сообщения)
+            console.log(response);
+            location.reload();
+        },
+        error: function(response) {
+            // Обработка ошибки (например, вывод сообщения об ошибке)
+            console.error(response);
+        }
+    });
+  });
+
+  $("#register").submit(function(event) {
+    event.preventDefault();  // Предотвращаем стандартное поведение отправки формы
+
+    // Отправляем данные формы на сервер через AJAX
+    $.ajax({
+        type: "POST",
+        url: $(this).attr('action'),  // Замените на правильный URL
+        headers: {
+          'X-CSRFToken': csrftoken, // Передача CSRF-токена в заголовке
+        },
+        data: $(this).serialize(),
+        success: function(response) {
+            // Обработка успешного ответа от сервера (например, вывод сообщения)
+            console.log(response);
+            location.reload();
+        },
+        error: function(response) {
+            // Обработка ошибки (например, вывод сообщения об ошибке)
+            console.error(response);
+        }
+    });
+  });
+
+  if (btn_login.length > 0) {
+    btn_login.on("click", function() {
+      modal_registration.get(0).showModal();
     });
   }
-}
 
-
-if (closeBtn) {
-  closeBtn.onclick = function() {
-    modal.close();
+  if (btn_logout.length > 0) {
+    btn_logout.on("click", function() {
+      $.ajax({
+        url: '/logout/',
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': csrftoken, // Передача CSRF-токена в заголовке
+        },
+        success: function(response) {
+          console.log('Вы успешно вышли из системы.');
+          location.reload();
+        },
+        error: function(error) {
+          console.error('Произошла ошибка при выходе из системы.');
+        }
+      });
+    });
   }
-}
 
-modal.addEventListener('click', function (e) {
-    if(!e.target.closest('form')) {
-        e.target.close();
-    }  
+  if (closeBtn.length > 0) {
+    closeBtn.on("click", function() {
+      modal_registration.get(0).close();
+      modal_authentication.get(0).close();
+    });
+  }
+
+  modal_registration.on("click", function(e) {
+    if (!$(e.target).closest('form').length) {
+      modal_registration.get(0).close();
+    }
+  });
+
+  modal_authentication.on("click", function(e) {
+    if (!$(e.target).closest('form').length) {
+      modal_authentication.get(0).close();
+    }
+  });
 });

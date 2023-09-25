@@ -1,9 +1,8 @@
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
-from .forms import RegistrationForm
+from .forms import LoginForm, RegistrationForm
 from django.views import View
-from django.contrib.auth.forms import AuthenticationForm
 
 
 class IndexView(View):
@@ -23,9 +22,10 @@ class IndexView(View):
 
 class LoginView(View):
     def post(self, request):
-        login_form = AuthenticationForm(request, data=request.POST)
+        login_form = LoginForm(request, data=request.POST)
+        print(dict(request.POST))
         if not login_form.is_valid():
-            return JsonResponse({"err": "Invalid form data!"}, status=401)
+            return JsonResponse({"errors": login_form.errors}, status=422)
         username = login_form.cleaned_data.get("username")
         password = login_form.cleaned_data.get("password")
 
@@ -33,10 +33,6 @@ class LoginView(View):
         if user is not None:
             login(request, user)
             return JsonResponse({"message": "Вход выполнен успешно"})
-        else:
-            return JsonResponse(
-                {"err": "Неверное имя пользователя или пароль"}, status=401
-            )
 
 
 class LogoutView(View):
@@ -45,13 +41,14 @@ class LogoutView(View):
             logout(request)
             return JsonResponse({"message": "Выход выполнен успешно"})
         else:
-            return JsonResponse({"err": "Вы не вошли в систему"}, status=401)
+            return JsonResponse({"err": "Вы не вошли в систему"}, status=422)
 
 
 class RegistrationView(View):
     def post(self, request):
         form = RegistrationForm(request.POST)
         if not form.is_valid():
-            return JsonResponse({"err": "Invalid form data!"}, status=401)
+            return JsonResponse({"errors": form.errors}, status=422)
         user = form.save()
         login(request, user)
+        return JsonResponse({"message": "Вход выполнен успешно"})

@@ -1,8 +1,10 @@
-.modal-field {
+.modal__field {
     margin-bottom: 1rem;
+    display: flex;
+    flex-flow: row-reverse;
 }
 
-.modal-field__lable {
+/* .modal-field__label {
     display: block;
     margin-bottom: 0.25rem;
     height: 38px;
@@ -11,19 +13,14 @@
     align-self: center;
 }
 
-.modal-field__lable svg path{
+.modal-field__label svg path {
     fill: #88bb33;
     transition: 0.6s;
-}
-
-.modal-field {
-    display: flex;
-    flex-flow: row-reverse;
-}
+} */
 
 .modal input {
     display: block;
-    width: 100%;
+    min-width: 18em;
     height: calc(2.25rem + 2px);
     padding: 0.375rem 0.75rem;
     font-family: inherit;
@@ -37,7 +34,7 @@
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.modal input:focus + .modal-field__lable svg path{
+.modal input:focus + .modal-field__label svg path {
     fill: #33bba4;
     transition: 0.6s;
 }
@@ -50,7 +47,7 @@
     transition: 0.3s all;
 }
 
-.modal-logo {
+.modal__top {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -58,11 +55,11 @@
     font-size: xxx-large;
 }
 
-.modal-logo__img {
+.modal__top-logo {
     width: 128px;
 }
 
-.modal-close {
+.modal__close {
     display: block;
     position: absolute;
     width: 16px;
@@ -70,22 +67,18 @@
     right: 1em;
 }
 
-.modal-close svg {
+.modal__close svg {
     fill: #181818;
     transition: 0.6s;
 }
 
-.modal-close:hover {
+.modal__close:hover {
     cursor: pointer;
 }
 
-.modal-close:hover svg {
+.modal__close:hover svg {
     fill: #cc0000;
     transition: 0.6s;
-}
-
-.modal input {
-    width: -webkit-fill-available;
 }
 
 dialog {
@@ -93,10 +86,24 @@ dialog {
     padding: 0;
 }
 
-dialog>form {
+dialog > form {
     padding: 1em;
 }
 
 dialog:focus-visible {
     outline: none;
+}
+
+.modal__button {
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+.modal__field-question {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal__field-question > a{
+    cursor: pointer;
 }

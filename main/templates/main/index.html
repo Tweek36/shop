@@ -2,9 +2,9 @@
 
 {% load static %}
 
-{% block link%}
-<link rel="stylesheet" href="{% static 'main/css/layout.css' %}"> 
-<link rel="stylesheet" href="{% static 'main/css/index.css' %}">
+{% block link %}
+    <link rel="stylesheet" href="{% static 'main/css/layout.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
 {% endblock %}
 
 {% block script %}
@@ -15,11 +15,11 @@
 {% block body %}
     <div class="list">
         {% for name, product in products %}
-        <a href="" class="list-element colorful-svg">
+        <a href="" class="list__element colorful-svg">
             <svg viewBox="0 0 1000 1000">
                 <use xlink:href="{% static 'main/img/'|add:product|add:'.svg' %}#{{product}}"></use>
             </svg>
-            <p class="list-element__text">{{name}}</p>
+            <p class="list__element-text">{{name}}</p>
         </a>
         {% endfor %}
     </div>

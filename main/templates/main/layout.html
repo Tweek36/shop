@@ -16,37 +16,40 @@
     {% block link %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" defer></script>
+    <script type="text/javascript" src="{% static 'main/js/jquery-cookie/jquery.cookie.js' %}" defer></script>
     <script src="{% static 'main/js/modal.js' %}" defer></script>
+    {% block script %}{% endblock %}
 </head>
 <body>
     {% include 'main/modal/registration.html' %}
+    {% include 'main/modal/authentication.html' %}
     <nav class="header">
-        <a class="header-logo" href="{% url 'index' %}">
-            <img src="{% static 'main/img/logo.png' %}" alt="" class="header-logo__img">
-            <span class="header-logo__text">Store</span>
+        <a class="header__logo" href="{% url 'index' %}">
+            <img src="{% static 'main/img/logo.png' %}" alt="" class="header__logo-img">
+            <span class="header__logo-text">Store</span>
         </a>
-        <input type="text" class="header-search" placeholder="Palit GeForce RTX 4070 Ti GameRock Classic 12G">
-        <div class="header-login">
+        <input type="text" class="header__search" placeholder="Palit GeForce RTX 4070 Ti GameRock Classic 12G">
+        <div class="header__login">
             {% if user.username %}
-            <a class="colorful-svg header-login" id="open_accaunt">
+            <a class="colorful-svg header__login" id="open_accaunt">
                 <svg viewBox="0 0 1000 1000">
                     <use xlink:href="{% static 'main/img/login.svg' %}#login"></use>
                 </svg>
-                <p class="header-login__text">
+                <p class="header__login-text">
                     {{ user.username }}
                 </p>
             </a>
-            <a class="header-login colorful-svg" id="logout">
+            <a class="header__login colorful-svg" id="logout">
                 <svg viewBox="0 0 1000 1000">
                     <use xlink:href="{% static 'main/img/logout.svg' %}#logout"></use>
                 </svg>
             </a>
             {% else %}
-            <a class="header-login colorful-svg" id="open_login">
+            <a class="header__login colorful-svg" id="open_login">
                 <svg viewBox="0 0 1000 1000">
                     <use xlink:href="{% static 'main/img/login.svg' %}#login"></use>
                 </svg>
-                <p class="header-login__text">
+                <p class="header__login-text">
                     LogIn
                 </p>
             </a>
@@ -54,7 +57,7 @@
         </div>
     </nav>
     <div class="content">
-        {% block body %}{%endblock%}
+        {% block body %}{% endblock %}
     </div>
     <footer class="footer">
         <div class="footer-element">
@@ -72,18 +75,17 @@
             <p class="phone">+7(123) 456-78-90</p>
             <div class="social">
                 <a href="https://vk.com/g228922" target="_blank"  class="vk colorful-svg">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
-                    <g><path d="M900.2,10H99.8C50.8,10,10,50.8,10,99.8v800.3c0,49,40.8,89.8,89.8,89.8h800.3c49,0,89.8-40.8,89.8-89.8V99.8C990,50.8,949.2,10,900.2,10z M789.9,585.7c57.2,53.1,69.4,81.7,73.5,85.8c24.5,40.8-28.6,44.9-28.6,44.9h-98c0,0-20.4,4.1-49-16.3c-36.7-24.5-69.4-89.8-98-81.7c-28.6,8.1-24.5,69.4-24.5,69.4s0,12.3-4.1,16.3c-8.2,8.2-20.4,8.2-20.4,8.2h-44.9c0,0-98,8.2-183.8-81.7c-93.9-98-179.7-289.9-179.7-289.9s-4.1-12.3,0-16.3c4.1-8.2,20.4-8.2,20.4-8.2h106.2c0,0,8.2,0,16.3,8.2c4.1,4.1,8.2,12.2,8.2,12.2s16.3,44.9,40.8,81.7c44.9,77.6,65.3,93.9,77.6,85.8c20.4-12.3,16.3-106.2,16.3-106.2s0-32.7-12.2-49c-4.1-20.4-20.4-20.4-28.6-24.5c-4.1,0,4.1-16.3,16.3-20.4c20.4-8.2,53.1-8.2,93.9-8.2c32.7,0,40.8,4.1,53.1,4.1c36.8,8.2,24.5,40.8,24.5,122.5c0,24.5-4.1,61.2,12.3,73.5c8.1,4.1,28.6,0,77.6-81.7c24.5-40.8,40.8-85.8,40.8-85.8s4.1-8.2,8.2-12.2c4.1-4.1,12.2-4.1,12.2-4.1h110.3c0,0,32.7-4.1,36.8,12.3c4.1,16.3-12.3,53.1-57.2,114.3C732.8,536.7,724.6,528.6,789.9,585.7z"/></g>
+                    <svg viewBox="0 0 1000 1000">
+                        <use xlink:href="{% static 'main/img/vk.svg' %}#vk"></use>
                     </svg>
                 </a>
                 <a href="" class="telegram colorful-svg">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
-                    <g><path d="M500,10C229.4,10,10,229.4,10,500s219.4,490,490,490s490-219.4,490-490S770.6,10,500,10z M740.8,345.9l-80.4,378.8c-5.5,27-21.8,33.3-44.4,20.9L493.5,655l-58.8,57.2c-6.9,6.7-12.3,12.3-24.5,12.3c-15.9,0-13.2-5.9-18.6-21.1l-41.7-137l-121.2-37.7c-26.2-8-26.4-26,5.9-38.9l472-182.2C728.2,297.9,749,312.8,740.8,345.9L740.8,345.9z"/></g>
+                    <svg viewBox="0 0 1000 1000">
+                        <use xlink:href="{% static 'main/img/telegram.svg' %}#telegram"></use>
                     </svg>
                 </a>
             </div>
         </div>
     </footer>
-    {% block script %}{% endblock %}
 </body>
 </html>

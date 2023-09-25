@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "main",
-    "edit",
+    "product",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -64,8 +64,11 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "main.context_processors.registration_modal_form",
-                "main.context_processors.authentication_modal_form",
+                "main.context_processors.registration_form",
+                "main.context_processors.authentication_form",
+                # "product.context_processors.product_form",
+                "product.context_processors.category_form",
+                "product.context_processors.attribute_form",
             ],
         },
     },
