@@ -17,7 +17,7 @@
     <form class="product" id="product-form" method="{{ method }}" action="{% if method == 'POST' %}{% url 'product_crud' %}{% else %}{% url 'product_crud' product_id=product_id %}{% endif %}">
         <div class="product__main-info">
             <div class="main-info__img-element">
-                <img src="{% if method == 'POST' %}/media/img/default.jpg{% else %}{{ product_form.image.url }}{% endif %}" alt="" class="img-element__img" id="product-img">
+                <img src="{% if method == 'POST' %} /media/img/default.jpg {% else %} {{ product_form.instance.image.url }} {% endif %}" alt="" class="img-element__img" id="product-img">
                 {{ product_form.image }}
             </div>
             <div class="main-info__info">
@@ -41,7 +41,8 @@
         <div class="product__attributes">
             <div class="attributes__select">
                 {{ product_form.attributes }}
-                <input type="checkbox" id="category-check" disabled>
+                <p>Только арибуты категрии: </p>
+                <input type="checkbox" id="category-check" {% if method == 'POST' %} disabled {% endif %}>
             </div>
             <div class="attributes__form" id="attributes-form" hidden>
                 <p id="product-attribute-name"></p>
@@ -51,12 +52,12 @@
                 {% if method == 'PUT' %}
                     <select id="attributes-list" disabled="disabled" hidden>
                         {% for product_attribute in product_attributes %}
-                            <option value="{{product_attribute.value}}">{{product_attribute.attribute}}</option>
+                            <option value="{{product_attribute.value}}" id="{{product_attribute.attribute.id}}">{{product_attribute.attribute}}</option>
                         {% endfor %}
                     </select>
                 {% endif %}
             </div>
         </div>
         <button type="submit">Сохранить</button>
-    </div>
+    </form>
 {% endblock %}

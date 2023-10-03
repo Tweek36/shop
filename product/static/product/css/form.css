@@ -54,3 +54,7 @@
     width: 14rem;
     height: 6rem;
 }
+
+.del-attribute {
+    background-color: rgba(255, 0, 0, 20%);
+}
