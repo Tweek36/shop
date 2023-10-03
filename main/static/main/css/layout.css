@@ -222,3 +222,16 @@ hr {
     margin: 0 auto;
     padding: 108px 0 0 0;
 }
+
+dialog:focus-visible, select:focus-visible {
+    outline: none;
+}
+
+select option:checked{
+    background-color: inherit !important;
+    color: #88bb33 !important;
+}
+
+select[multiple] {
+    background: #ffffff40;
+}

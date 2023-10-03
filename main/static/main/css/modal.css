@@ -90,9 +90,7 @@ dialog > form {
     padding: 1em;
 }
 
-dialog:focus-visible {
-    outline: none;
-}
+
 
 .modal__button {
     width: 100%;

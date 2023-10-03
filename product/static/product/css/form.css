@@ -1,0 +1,56 @@
+.product__main-info {
+    display: flex;
+}
+
+.img-element__img {
+    max-width: 20rem;
+}
+
+.main-info__img-element {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-info__info {
+    display: flex;
+    flex-direction: column;
+    padding-left: 1em;
+    flex-grow: 1;
+}
+
+.info__row {
+    margin-bottom: 0.5rem;
+    display: flex;
+}
+
+.info__row * {
+    flex-grow: 1;
+}
+
+.info__row textarea {
+    resize: vertical;
+}
+
+.info__row:has(textarea) {
+    flex-grow: 1;
+    margin-bottom: 0;
+}
+
+.product {
+    margin: 25px 0;
+}
+
+.attributes__form:not([hidden]) {
+    display: flex;
+    align-items: center;
+}
+
+.attributes__select {
+    display: flex;
+    align-items: center;
+}
+
+.attributes__select select {
+    width: 14rem;
+    height: 6rem;
+}
