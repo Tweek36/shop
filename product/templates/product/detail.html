@@ -1,0 +1,27 @@
+{% extends 'main/layout.html' %}
+
+{% load static %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'product/css/form.css' %}">
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'product/js/form.js' %}" defer></script>
+{% endblock %}
+
+{% block title %}{{product.title}}{% endblock %}
+
+{% block body %}
+<div class="product">
+    <div class="product-info">
+        <div class="product-image">
+            <img src="{{ product.image.url }}" alt="" class="product-image__img">
+        </div>
+        <div class="product-main-info">
+            <h1 class="product__title">{{product.title}}</h1>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

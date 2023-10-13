@@ -218,7 +218,8 @@ hr {
 }
 
 .content {
-    width: 730px;
+    width: 47rem;
+    max-width: 47rem;
     margin: 0 auto;
     padding: 108px 0 0 0;
 }

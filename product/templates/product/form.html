@@ -3,7 +3,6 @@
 {% load static %}
 
 {% block link %}
-    <link rel="stylesheet" href="{% static 'main/css/layout.css' %}">
     <link rel="stylesheet" href="{% static 'product/css/form.css' %}">
 {% endblock %}
 
@@ -14,7 +13,7 @@
 {% block title %}{% if method == 'POST' %}Create product{% else %}Update product{% endif %}{% endblock %}
 
 {% block body %}
-    <form class="product" id="product-form" method="{{ method }}" action="{% if method == 'POST' %}{% url 'product_crud' %}{% else %}{% url 'product_crud' product_id=product_id %}{% endif %}">
+    <form class="product" id="product-form" method="post" enctype="multipart/form-data">
         <div class="product__main-info">
             <div class="main-info__img-element">
                 <img src="{% if method == 'POST' %} /media/img/default.jpg {% else %} {{ product_form.instance.image.url }} {% endif %}" alt="" class="img-element__img" id="product-img">
@@ -28,13 +27,35 @@
                     {{ product_form.category }}
                 </div>
                 <div class="info__row">
+                    {{ product_form.brand }}
+                </div>
+                <div class="info__row">
                     {{ product_form.price }}
                 </div>
                 <div class="info__row">
                     {{ product_form.stock }}
                 </div>
                 <div class="info__row">
-                    {{ product_form.description }}
+                    {{ product_form.variations }}
+                </div>
+                <div class="variations__list">
+                    <div class="variations__form" id="variations-form" hidden>
+                        <p id="product-variation-name"></p>
+                        {{product_variation_form.value}}
+                        {{product_variation_form.additional_value}}
+                        <div class="del-variation">
+                            <svg width="16" height="16">
+                                <use xlink:href="{% static 'main/img/close.svg' %}#close"></use>
+                            </svg>
+                        </div>
+                    </div>
+                    {% if method == 'PUT' %}
+                        <select id="variations-list" disabled="disabled" hidden>
+                            {% for product_variation in product_variations %}
+                                <option value="{{product_variation.value}}" id="{{product_variation.id}}" additional_value="{{product_variation.additional_value}}" variation="{{product_variation.variation.id}}">{{product_variation.variation}}</option>
+                            {% endfor %}
+                        </select>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -45,8 +66,9 @@
                 <input type="checkbox" id="category-check" {% if method == 'POST' %} disabled {% endif %}>
             </div>
             <div class="attributes__form" id="attributes-form" hidden>
-                <p id="product-attribute-name"></p>
+                <p class="attributes__form__p draggable"></p>
                 {{product_attribute_form.value}}
+                {{product_attribute_form.priority}}
             </div>
             <div class="attributes__list">
                 {% if method == 'PUT' %}
